@@ -5,22 +5,28 @@ import ROT from '../../vendor/rot.js';
 
 let GameObj ={
 	_display:null,
+	width :80,
+	height : 24,
 	init:function(){
-		this._display = new ROT.Display({width:80,height:24});
+		let map = new ROT.Map.Rogue(this.width,this.height);
+		this._display = new ROT.Display({width:this.width,height:this.height});
+		//this._display.getContainer()
+		map.create(this._display.DEBUG)
+		console.log(map)
 	},
 	getDisplay:function(){
 		return this._display;
 	}
 }
 
+GameObj.init()
+document.body.appendChild(GameObj.getDisplay().getContainer())
 class Game extends Component{
 	componentDidMount(){
 	if(!ROT.isSupported()){
 			console.log('rot not supported')
 		}else{
 			console.log('rot supported')
-			GameObj.init()
-			document.body.appendChild(GameObj.getDisplay().getContainer())
 		}
 	}
 	render(){
