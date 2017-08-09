@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';  
-import Game from './components/game.jsx'; 
+import GameClass from './components/gameClass.jsx'; 
 
 class App extends Component {
 
   render() {
     return (
       <div>
-        <Game/>
+        <GameClass/>
       </div>
     );
   }
