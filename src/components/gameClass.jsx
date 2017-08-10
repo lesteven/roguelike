@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import ROT from '../../vendor/rot.js';  
 import Game from '../assets/game';
-import {test} from '../assets/test';
-
+import {_createPlayer} from '../assets/player';
+import {_generateMap} from '../assets/map';
 
 class GameClass extends Component{
 	componentDidMount(){
