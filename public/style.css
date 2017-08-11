@@ -1,5 +1,6 @@
 body{
 	text-align: center;
+	background-color: black;
 }
 ul{
 	list-style: none;
@@ -7,4 +8,5 @@ ul{
 li{
 	display:inline;
 	padding:5%;
+	color:white;
 }

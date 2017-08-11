@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import ROT from '../../vendor/rot.js';  
 import Game from '../assets/game';
-import {_createPlayer} from '../assets/player';
+import {_createPlayer,_engine} from '../assets/player';
 import {_generateMap,_drawWholeMap} from '../assets/map';
 
 class GameClass extends Component{
@@ -14,11 +14,11 @@ class GameClass extends Component{
 			Game.init()
 			const gameDiv = document.getElementById('game');
 			gameDiv.appendChild(Game.getDisplay().getContainer())
-			//Game.getDisplay().draw(5,4,'@')
+			console.log(Game.map)
 		}
 	}
 	render(){
-	console.log(Game)
+	//console.log(Game)
 		return(
 			<div id='game'>
 			<ul>
