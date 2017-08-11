@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import ROT from '../../vendor/rot.js';  
 import Game from '../assets/game';
 import {_createPlayer} from '../assets/player';
-import {_generateMap} from '../assets/map';
+import {_generateMap,_drawWholeMap} from '../assets/map';
 
 class GameClass extends Component{
 	componentDidMount(){
@@ -18,7 +18,7 @@ class GameClass extends Component{
 		}
 	}
 	render(){
-	//console.log(Game)
+	console.log(Game)
 		return(
 			<div id='game'>
 			<ul>
