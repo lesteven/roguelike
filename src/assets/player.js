@@ -43,7 +43,7 @@ player.prototype.handleEvent = function(e){
     Game.engine.unlock();
 
     Game._pickUp(newKey,Game.hItems,Game._increaseHealth);
-
+    Game._pickUp(newKey,Game.newWeapon,Game._getWeapon);
 ;}
 
 Game._createPlayer = function(freeCells){
@@ -78,8 +78,14 @@ Game._pickUp = function(coord,arr,cb){
 }
 
 Game._increaseHealth = function(){
-	console.log(Game.health)
+	//console.log(Game.health)
 	Game.health += 20;
-	console.log(Game.health)
+	//console.log(Game.health)
 	Game._display.drawText(5,Game.height-3,'Health: '+ Game.health)
+}
+Game._getWeapon = function(){
+	Game.weapon = 'Spear'
+	Game._display.drawText(65,Game.height-3,'Weapon: '+ Game.weapon)
+	Game.attack += 20
+	Game._display.drawText(85,Game.height-3,'Attack: '+ Game.attack)
 }
