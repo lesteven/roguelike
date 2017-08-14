@@ -26,7 +26,6 @@ player.prototype.handleEvent = function(e){
     keyMap[36] = 7;
 
     let code = e.keyCode;
-    console.log(code)
     if(!(code in keyMap)){return;}
 
     let dir = ROT.DIRS[8][keyMap[code]];
@@ -38,6 +37,7 @@ player.prototype.handleEvent = function(e){
     Game._display.draw(this._x,this._y,Game.map[this._x+','+this._y]);
     this._x = newX;
     this._y = newY;
+    console.log(this._x,this._y)
     this._draw();
     window.removeEventListener('keydown',this);
     Game.engine.unlock();

@@ -15,6 +15,7 @@ Game._generateMap= function(){
 	}
 	rogueMap.create(mapCB.bind(this));
 	this._drawWholeMap();
+	this._generateHealthItems(freeCells)
 	this._createPlayer(freeCells);
 }
 

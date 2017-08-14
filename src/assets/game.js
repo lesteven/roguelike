@@ -8,11 +8,17 @@ let Game ={
 	map:{},
 	width :100,
 	height : 35,
+	health : 40,
+	level:0,
+	xp: 0,
+	weapon: 'fist',
+	attack: 10,
+	hItems:[],
 	
 	init:function(){
 		this._generateMap()
 		this._engine()
-		//console.log(Object.getPrototypeOf(this.player))
+		console.log(this.map)
 	},
 	getDisplay:function(){
 		return this._display;
