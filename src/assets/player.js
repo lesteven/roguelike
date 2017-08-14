@@ -37,10 +37,13 @@ player.prototype.handleEvent = function(e){
     Game._display.draw(this._x,this._y,Game.map[this._x+','+this._y]);
     this._x = newX;
     this._y = newY;
-    console.log(this._x,this._y)
+    //console.log(newKey)
     this._draw();
     window.removeEventListener('keydown',this);
     Game.engine.unlock();
+
+    Game._pickUp(newKey,Game.hItems,Game._increaseHealth);
+
 ;}
 
 Game._createPlayer = function(freeCells){
@@ -59,4 +62,24 @@ Game._engine = function(){
 	scheduler.add(this.player,true);
 	this.engine = new ROT.Engine(scheduler);
 	this.engine.start();
+}
+
+Game._pickUp = function(coord,arr,cb){
+	let index = arr.indexOf(coord)
+	//console.log(index)
+	if(index !== -1){
+		arr.splice(index,1)
+		cb()
+		console.log(arr)
+	}
+	else{
+		return;
+	}
+}
+
+Game._increaseHealth = function(){
+	console.log(Game.health)
+	Game.health += 20;
+	console.log(Game.health)
+	Game._display.drawText(5,Game.height-3,'Health: '+ Game.health)
 }

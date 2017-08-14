@@ -7,13 +7,16 @@ let Game ={
 	engine:null,
 	map:{},
 	width :100,
-	height : 35,
+	height : 38,
 	health : 40,
 	level:0,
 	xp: 0,
-	weapon: 'fist',
+	weapon: 'Fist',
 	attack: 10,
 	hItems:[],
+	newWeapon:[],
+	monsters:[],
+	boss:[],
 	
 	init:function(){
 		this._generateMap()

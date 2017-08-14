@@ -23,13 +23,6 @@ class GameClass extends Component{
 	//console.log(Game)
 		return(
 			<div id='game'>
-			<ul>
-				<li>Health: {Game.health}</li>
-				<li>Level: {Game.level}</li>
-				<li>XP: {Game.xp}</li>
-				<li>Weapon: {Game.weapon}</li>
-				<li>Attack: {Game.attack}</li>
-			</ul>
 			</div>
 		)
 	}
