@@ -1,5 +1,7 @@
 import ROT from '../../vendor/rot.js';  
 import Game from './game.js';
+import {player,boss} from './player';
+
 
 Game._generateMap= function(){
 	let rogueMap = new ROT.Map.Rogue(this.width,this.height-5);
@@ -17,10 +19,9 @@ Game._generateMap= function(){
 	this._drawWholeMap();
 	this._generateItems(freeCells,5,'#',this.hItems,'#ccffcc');
 	this._generateItems(freeCells,1,'&',this.newWeapon,'#7bffff');
-	//this._generateItems(freeCells,8,'M',this.monsters,'#ffa343');
-	//this._generateItems(freeCells,1,'B',this.boss,'#ffb2b2');
-	this._createPlayer(freeCells);
 	this._playerStatus();
+	this.player = this._createBeing(player,freeCells);
+	this.boss = this._createBeing(boss,freeCells);
 }
 
 Game._drawWholeMap=function(){

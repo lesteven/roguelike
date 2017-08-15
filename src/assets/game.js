@@ -4,6 +4,7 @@ import ROT from '../../vendor/rot.js';
 let Game ={
 	_display:null,
 	player:null,
+	boss:null,
 	engine:null,
 	map:{},
 	width :100,
@@ -21,7 +22,7 @@ let Game ={
 	init:function(){
 		this._generateMap()
 		this._engine()
-		console.log(this.map)
+		//console.log(this.map)
 	},
 	getDisplay:function(){
 		return this._display;

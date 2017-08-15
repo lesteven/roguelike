@@ -1,6 +1,17 @@
 import ROT from '../../vendor/rot.js';  
 import Game from './game.js';
 
+let boss = function(x,y){
+	this._x = x;
+	this._y = y;
+	this._draw();
+}
+boss.prototype.act = function(){
+	//Game.engine.lock();
+}
+boss.prototype._draw = function(){
+	Game._display.draw(this._x,this._y,'B','#8acfff')
+}
 
 let player = function(x,y){
 	this._x = x;
@@ -46,20 +57,21 @@ player.prototype.handleEvent = function(e){
     Game._pickUp(newKey,Game.newWeapon,Game._getWeapon);
 ;}
 
-Game._createPlayer = function(freeCells){
+Game._createBeing = function(being,freeCells){
 	let index = Math.floor(ROT.RNG.getUniform()*freeCells.length);
 
 	let key = freeCells.splice(index,1)[0];
 	let parts = key.split(',');
 	const x = parseInt(parts[0]);
 	const y = parseInt(parts[1]);
-	this.player = new player(x,y)
+	return new being(x,y);
 
 }
 
 Game._engine = function(){
 	const scheduler = new ROT.Scheduler.Simple();
 	scheduler.add(this.player,true);
+	scheduler.add(this.boss,false);
 	this.engine = new ROT.Engine(scheduler);
 	this.engine.start();
 }
@@ -70,7 +82,7 @@ Game._pickUp = function(coord,arr,cb){
 	if(index !== -1){
 		arr.splice(index,1)
 		cb()
-		console.log(arr)
+		//console.log(arr)
 	}
 	else{
 		return;
@@ -89,3 +101,4 @@ Game._getWeapon = function(){
 	Game.attack += 20
 	Game._display.drawText(85,Game.height-3,'Attack: '+ Game.attack)
 }
+export {player,boss}
