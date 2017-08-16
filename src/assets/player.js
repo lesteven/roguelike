@@ -1,25 +1,15 @@
 import ROT from '../../vendor/rot.js';  
 import Game from './game.js';
 
-let boss = function(x,y){
-	this._x = x;
-	this._y = y;
-	this._draw();
-}
-boss.prototype.act = function(){
-	//Game.engine.lock();
-}
-boss.prototype._draw = function(){
-	Game._display.draw(this._x,this._y,'B','#8acfff')
-}
 
-let player = function(x,y){
+let player = function(x,y,key){
 	this._x = x;
 	this._y = y;
 	this._draw();
 }
 player.prototype.act = function(){
 	Game.engine.lock();
+	Game.engine.unlock();
 	window.addEventListener('keydown',this);
 }
 player.prototype._draw = function(){
@@ -43,6 +33,7 @@ player.prototype.handleEvent = function(e){
     let newX = this._x + dir[0];
     let newY = this._y +dir[1];
     let newKey = newX + ',' + newY;
+    if(newKey === Game.bossKey){return;}
     if(!(newKey in Game.map)){return;}
 
     Game._display.draw(this._x,this._y,Game.map[this._x+','+this._y]);
@@ -64,14 +55,14 @@ Game._createBeing = function(being,freeCells){
 	let parts = key.split(',');
 	const x = parseInt(parts[0]);
 	const y = parseInt(parts[1]);
-	return new being(x,y);
+	return new being(x,y,key);
 
 }
 
 Game._engine = function(){
 	const scheduler = new ROT.Scheduler.Simple();
 	scheduler.add(this.player,true);
-	scheduler.add(this.boss,false);
+	scheduler.add(this.boss,true);
 	this.engine = new ROT.Engine(scheduler);
 	this.engine.start();
 }
@@ -101,4 +92,4 @@ Game._getWeapon = function(){
 	Game.attack += 20
 	Game._display.drawText(85,Game.height-3,'Attack: '+ Game.attack)
 }
-export {player,boss}
+export {player}

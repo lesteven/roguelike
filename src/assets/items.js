@@ -12,5 +12,4 @@ Game._generateItems = function(freeCells,num,letter,arr,color){
 		arr.push(key)
 		this._display.draw(x,y,letter,color)
 	}
-	console.log(arr)
 }

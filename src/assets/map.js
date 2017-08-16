@@ -1,6 +1,7 @@
 import ROT from '../../vendor/rot.js';  
 import Game from './game.js';
-import {player,boss} from './player';
+import {player} from './player';
+import {boss} from './monsters';
 
 
 Game._generateMap= function(){

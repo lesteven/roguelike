@@ -4,7 +4,7 @@ import ROT from '../../vendor/rot.js';
 import Game from '../assets/game';
 import {_createPlayer,_engine} from '../assets/player';
 import {_generateMap,_drawWholeMap} from '../assets/map';
-import {_generateHealthItems} from '../assets/items';
+import {} from '../assets/items';
 
 
 class GameClass extends Component{
@@ -16,11 +16,10 @@ class GameClass extends Component{
 			Game.init()
 			const gameDiv = document.getElementById('game');
 			gameDiv.appendChild(Game.getDisplay().getContainer())
-			//console.log(Game.map)
+			console.log(Game.boss,Game.player)
 		}
 	}
 	render(){
-	//console.log(Game)
 		return(
 			<div id='game'>
 			</div>

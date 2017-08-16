@@ -18,11 +18,11 @@ let Game ={
 	newWeapon:[],
 	monsters:[],
 	boss:[],
+	bossKey:null,
 	
 	init:function(){
 		this._generateMap()
 		this._engine()
-		//console.log(this.map)
 	},
 	getDisplay:function(){
 		return this._display;
