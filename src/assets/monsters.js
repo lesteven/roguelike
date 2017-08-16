@@ -35,5 +35,6 @@ monster.prototype._draw = function(){
 monster.hp = 20;
 monster.attack = 10;
 monster.level = 1;
+monster.xp = 1;
 
 export {boss,monster}

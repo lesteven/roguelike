@@ -36,7 +36,7 @@ player.prototype.handleEvent = function(e){
     Game.playerKey = newKey
     if(newKey === Game.bossKey){
     	console.log(Game.bossKey)
-    	Game._attack()
+    	Game._attack(boss,Game.bossKey)
     	Game._takeDmg(boss)
     	return;
     }
@@ -66,7 +66,6 @@ Game._createBeing = function(being,freeCells){
 	const x = parseInt(parts[0]);
 	const y = parseInt(parts[1]);
 	return new being(x,y,key);
-
 }
 
 Game._engine = function(){
@@ -103,20 +102,20 @@ Game._getWeapon = function(){
 	Game.attack += 20
 	Game._display.drawText(Game.attackPos,Game.height-3,'Attack: '+ Game.attack)
 }
-Game._attack = function(){
+Game._attack = function(villain,key){
 	let dmg = Math.round(ROT.RNG.getNormal(this.attack * this.level,10))
 	console.log('your attack dmg',dmg)
-   	boss.hp -= this.attack;
-    	if(boss.hp <= 0){
-    		console.log(this.bossKey)
-    		this.bossKey = null;
+   	villain.hp -= this.attack;
+    	if(villain.hp <= 0){
+    		console.log(villain)
+    		key = null;
     	}
     console.log('boss health',boss.hp)
 }
 
-Game._takeDmg = function(monster){	
-	let dmg = Math.round(ROT.RNG.getNormal(boss.attack * boss.level,10))
-	console.log('boss attack dmg',dmg)
+Game._takeDmg = function(villain){	
+	let dmg = Math.round(ROT.RNG.getNormal(villain.attack * villain.level,10))
+	console.log('villain attack dmg',dmg)
 	this.health -= dmg;	
 	this._display.drawText(this.healthPos,this.height-3,'Health: '+ Game.health)
 	

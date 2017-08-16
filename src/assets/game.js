@@ -9,7 +9,7 @@ let Game ={
 	map:{},
 	width :100,
 	height : 38,
-	health : 40,
+	health : 90,
 	level:1,
 	xp: 0,
 	weapon: 'Fist',
