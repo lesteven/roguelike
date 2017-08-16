@@ -1,7 +1,7 @@
 import ROT from '../../vendor/rot.js';  
 import Game from './game.js';
 import {player} from './player';
-import {boss} from './monsters';
+import {boss,monster} from './monsters';
 
 
 Game._generateMap= function(){
@@ -23,6 +23,10 @@ Game._generateMap= function(){
 	this._playerStatus();
 	this.player = this._createBeing(player,freeCells);
 	this.boss = this._createBeing(boss,freeCells);
+
+	for(let i=0; i <5; i++){
+		this._createBeing(monster,freeCells);
+	}
 }
 
 Game._drawWholeMap=function(){

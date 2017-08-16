@@ -1,6 +1,6 @@
 import ROT from '../../vendor/rot.js';  
 import Game from './game.js';
-import {boss} from './monsters.js';
+import {boss,monster} from './monsters.js';
 
 let player = function(x,y,key){
 	this._x = x;
@@ -38,6 +38,10 @@ player.prototype.handleEvent = function(e){
     	console.log(Game.bossKey)
     	Game._attack()
     	Game._takeDmg(boss)
+    	return;
+    }
+    if(newKey in Game.monsters){
+    	console.log(newKey)
     	return;
     }
     if(!(newKey in Game.map)){return;}
@@ -100,6 +104,8 @@ Game._getWeapon = function(){
 	Game._display.drawText(Game.attackPos,Game.height-3,'Attack: '+ Game.attack)
 }
 Game._attack = function(){
+	let dmg = Math.round(ROT.RNG.getNormal(this.attack * this.level,10))
+	console.log('your attack dmg',dmg)
    	boss.hp -= this.attack;
     	if(boss.hp <= 0){
     		console.log(this.bossKey)
@@ -109,11 +115,11 @@ Game._attack = function(){
 }
 
 Game._takeDmg = function(monster){	
-	this.health -= monster.attack;
-	console.log('your health',this.health)
-	
+	let dmg = Math.round(ROT.RNG.getNormal(boss.attack * boss.level,10))
+	console.log('boss attack dmg',dmg)
+	this.health -= dmg;	
 	this._display.drawText(this.healthPos,this.height-3,'Health: '+ Game.health)
-	console.log('Health:' + Game.health)
+	
 	if(this.health <= 0){
 		this._display.clear()
 		this._display.drawText(this.healthPos,this.height-3,'You lose!')
