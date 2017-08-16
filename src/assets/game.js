@@ -19,6 +19,7 @@ let Game ={
 	monsters:[],
 	boss:[],
 	bossKey:null,
+	playerKey:null,
 	
 	init:function(){
 		this._generateMap()

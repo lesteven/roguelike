@@ -33,10 +33,16 @@ Game._drawWholeMap=function(){
 		this._display.draw(x,y,this.map[key])
 	}
 }
+Game.healthPos = 5;
+Game.levelPos = 25;
+Game.xpPos = 45;
+Game.weaponPos = 65;
+Game.attackPos = 85;
+
 Game._playerStatus = function(){
-	this._display.drawText(5,this.height-3,'Health: '+ Game.health)
-	this._display.drawText(25,this.height-3,'Level: '+ Game.level)
-	this._display.drawText(45,this.height-3,'XP: '+ Game.xp)
-	this._display.drawText(65,this.height-3,'Weapon: '+ Game.weapon)
-	this._display.drawText(85,this.height-3,'Attack: '+ Game.attack)
+	this._display.drawText(this.healthPos,this.height-3,'Health: '+ Game.health)
+	this._display.drawText(this.levelPos,this.height-3,'Level: '+ Game.level)
+	this._display.drawText(this.xpPos,this.height-3,'XP: '+ Game.xp)
+	this._display.drawText(this.weaponPos,this.height-3,'Weapon: '+ Game.weapon)
+	this._display.drawText(this.attackPos,this.height-3,'Attack: '+ Game.attack)
 }

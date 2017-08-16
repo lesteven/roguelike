@@ -1,6 +1,6 @@
 import ROT from '../../vendor/rot.js';  
 import Game from './game.js';
-
+import {boss} from './monsters.js';
 
 let player = function(x,y,key){
 	this._x = x;
@@ -33,7 +33,12 @@ player.prototype.handleEvent = function(e){
     let newX = this._x + dir[0];
     let newY = this._y +dir[1];
     let newKey = newX + ',' + newY;
-    if(newKey === Game.bossKey){return;}
+    Game.playerKey = newKey
+    if(newKey === Game.bossKey){
+    	Game._attack()
+    	Game._takeDmg(boss)
+    	return;
+    }
     if(!(newKey in Game.map)){return;}
 
     Game._display.draw(this._x,this._y,Game.map[this._x+','+this._y]);
@@ -43,10 +48,10 @@ player.prototype.handleEvent = function(e){
     this._draw();
     window.removeEventListener('keydown',this);
     Game.engine.unlock();
-
+    //console.log(Game.playerKey)
     Game._pickUp(newKey,Game.hItems,Game._increaseHealth);
     Game._pickUp(newKey,Game.newWeapon,Game._getWeapon);
-;}
+}
 
 Game._createBeing = function(being,freeCells){
 	let index = Math.floor(ROT.RNG.getUniform()*freeCells.length);
@@ -88,8 +93,23 @@ Game._increaseHealth = function(){
 }
 Game._getWeapon = function(){
 	Game.weapon = 'Spear'
-	Game._display.drawText(65,Game.height-3,'Weapon: '+ Game.weapon)
+	Game._display.drawText(Game.weaponPos,Game.height-3,'Weapon: '+ Game.weapon)
 	Game.attack += 20
-	Game._display.drawText(85,Game.height-3,'Attack: '+ Game.attack)
+	Game._display.drawText(Game.attackPos,Game.height-3,'Attack: '+ Game.attack)
 }
+Game._attack = function(){
+   	boss.hp -= this.attack;
+    	if(boss.hp <=0){
+    		console.log(this.bossKey)
+    		this.bossKey = null;
+    	}
+    console.log(boss.hp)
+}
+
+Game._takeDmg = function(monster){
+	this.health -= monster.attack;
+	console.log(this.health)
+	this._display.drawText(this.healthPos,this.height-3,'Health: '+ Game.health)
+}
+
 export {player}

@@ -13,7 +13,8 @@ boss.prototype.act = function(){
 	Game.engine.lock();
 }
 boss.prototype._draw = function(){
-	Game._display.draw(this._x,this._y,'B','#8acfff')
+	Game._display.draw(this._x,this._y,'B','#ff7f7f')
 }
-
+boss.hp = 90;
+boss.attack = 40;
 export {boss}
