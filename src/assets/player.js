@@ -35,6 +35,7 @@ player.prototype.handleEvent = function(e){
     let newKey = newX + ',' + newY;
     Game.playerKey = newKey
     if(newKey === Game.bossKey){
+    	console.log(Game.bossKey)
     	Game._attack()
     	Game._takeDmg(boss)
     	return;
@@ -87,29 +88,37 @@ Game._pickUp = function(coord,arr,cb){
 
 Game._increaseHealth = function(){
 	//console.log(Game.health)
-	Game.health += 20;
+	Game.health += 10;
 	//console.log(Game.health)
-	Game._display.drawText(5,Game.height-3,'Health: '+ Game.health)
+	Game._display.drawText(Game.healthPos,Game.height-3,'Health: '+ Game.health)
 }
 Game._getWeapon = function(){
 	Game.weapon = 'Spear'
 	Game._display.drawText(Game.weaponPos,Game.height-3,'Weapon: '+ Game.weapon)
+	
 	Game.attack += 20
 	Game._display.drawText(Game.attackPos,Game.height-3,'Attack: '+ Game.attack)
 }
 Game._attack = function(){
    	boss.hp -= this.attack;
-    	if(boss.hp <=0){
+    	if(boss.hp <= 0){
     		console.log(this.bossKey)
     		this.bossKey = null;
     	}
-    console.log(boss.hp)
+    console.log('boss health',boss.hp)
 }
 
-Game._takeDmg = function(monster){
+Game._takeDmg = function(monster){	
 	this.health -= monster.attack;
-	console.log(this.health)
+	console.log('your health',this.health)
+	
 	this._display.drawText(this.healthPos,this.height-3,'Health: '+ Game.health)
+	console.log('Health:' + Game.health)
+	if(this.health <= 0){
+		this._display.clear()
+		this._display.drawText(this.healthPos,this.height-3,'You lose!')
+	}
+	Game._winScreen()
 }
 
 export {player}

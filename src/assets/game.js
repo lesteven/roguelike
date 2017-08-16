@@ -13,7 +13,7 @@ let Game ={
 	level:0,
 	xp: 0,
 	weapon: 'Fist',
-	attack: 10,
+	attack: 100,
 	hItems:[],
 	newWeapon:[],
 	monsters:[],

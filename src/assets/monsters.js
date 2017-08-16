@@ -7,7 +7,7 @@ let boss = function(x,y,key){
 	this._x = x;
 	this._y = y;
 	this._draw();
-	console.log('from boss',Game.map,Game.bossKey)
+	//console.log('from boss',Game.map,Game.bossKey)
 }
 boss.prototype.act = function(){
 	Game.engine.lock();
