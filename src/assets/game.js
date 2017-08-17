@@ -9,7 +9,7 @@ let Game ={
 	map:{},
 	width :100,
 	height : 38,
-	health : 90,
+	health : 45,
 	level:1,
 	xp: 0,
 	weapon: 'Fist',
@@ -20,6 +20,7 @@ let Game ={
 	boss:[],
 	bossKey:{},
 	playerKey:null,
+	sd: 2,
 	
 	init:function(){
 		this._generateMap()

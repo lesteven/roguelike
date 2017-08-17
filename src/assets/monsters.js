@@ -33,7 +33,7 @@ monster.prototype._draw = function(){
 	Game._display.draw(this._x,this._y,'M','#f4b601')
 }
 monster.hp = 20;
-monster.attack = 10;
+monster.attack = 5;
 monster.level = 1;
 monster.xp = 1;
 

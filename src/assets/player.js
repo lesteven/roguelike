@@ -43,6 +43,7 @@ player.prototype.handleEvent = function(e){
     if(newKey in Game.monsters){
     	console.log(newKey)
     	Game._attack(monster,Game.monsters,newKey)
+    	Game._takeDmg(monster)
     	return;
     }
     if(!(newKey in Game.map)){return;}
@@ -104,18 +105,21 @@ Game._getWeapon = function(){
 	Game._display.drawText(Game.attackPos,Game.height-3,'Attack: '+ Game.attack)
 }
 Game._attack = function(villain,obj,key){
-	let dmg = Math.round(ROT.RNG.getNormal(this.attack * this.level,5))
+	let dmg = Math.round(ROT.RNG.getNormal(this.attack * this.level,this.sd))
 	console.log('your attack dmg',dmg)
    	villain.hp -= dmg;
-    	if(villain.hp <= 0){
-    		delete(obj[key])
-    	}
+    if(villain.hp <= 0){
+    	delete(obj[key]);
+    	this._gainXP();
+    }
+    console.log(obj)
+    console.log('removed',key)
     console.log('villain health',villain.hp)
 }
 
 Game._takeDmg = function(villain){	
-	let dmg = Math.round(ROT.RNG.getNormal(villain.attack * villain.level,5))
-	console.log('villain attack dmg',dmg)
+	let dmg = Math.round(ROT.RNG.getNormal(villain.attack * villain.level,this.sd))
+	//console.log('villain attack dmg',dmg)
 	this.health -= dmg;	
 	this._display.drawText(this.healthPos,this.height-3,'Health: '+ Game.health)
 	
@@ -125,5 +129,13 @@ Game._takeDmg = function(villain){
 	}
 	Game._winScreen()
 }
-
+Game._gainXP = function(){
+    this.xp +=1;
+	if(this.xp ===5){
+		this.level +=1;
+		this.xp = 0;
+		this._display.drawText(this.levelPos,this.height-3,'Level: '+ Game.level)
+	}
+	this._display.drawText(this.xpPos,this.height-3,'XP: '+ Game.xp)
+}
 export {player}
