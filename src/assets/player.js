@@ -34,14 +34,15 @@ player.prototype.handleEvent = function(e){
     let newY = this._y +dir[1];
     let newKey = newX + ',' + newY;
     Game.playerKey = newKey
-    if(newKey === Game.bossKey){
-    	console.log(Game.bossKey)
-    	Game._attack(boss,Game.bossKey)
+    if(newKey in Game.bossKey){
+    	//console.log(Game.bossKey[newKey])
+    	Game._attack(boss,Game.bossKey,newKey)
     	Game._takeDmg(boss)
     	return;
     }
     if(newKey in Game.monsters){
     	console.log(newKey)
+    	Game._attack(monster,Game.monsters,newKey)
     	return;
     }
     if(!(newKey in Game.map)){return;}
@@ -102,19 +103,18 @@ Game._getWeapon = function(){
 	Game.attack += 20
 	Game._display.drawText(Game.attackPos,Game.height-3,'Attack: '+ Game.attack)
 }
-Game._attack = function(villain,key){
-	let dmg = Math.round(ROT.RNG.getNormal(this.attack * this.level,10))
+Game._attack = function(villain,obj,key){
+	let dmg = Math.round(ROT.RNG.getNormal(this.attack * this.level,5))
 	console.log('your attack dmg',dmg)
-   	villain.hp -= this.attack;
+   	villain.hp -= dmg;
     	if(villain.hp <= 0){
-    		console.log(villain)
-    		key = null;
+    		delete(obj[key])
     	}
-    console.log('boss health',boss.hp)
+    console.log('villain health',villain.hp)
 }
 
 Game._takeDmg = function(villain){	
-	let dmg = Math.round(ROT.RNG.getNormal(villain.attack * villain.level,10))
+	let dmg = Math.round(ROT.RNG.getNormal(villain.attack * villain.level,5))
 	console.log('villain attack dmg',dmg)
 	this.health -= dmg;	
 	this._display.drawText(this.healthPos,this.height-3,'Health: '+ Game.health)

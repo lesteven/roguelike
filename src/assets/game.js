@@ -13,12 +13,12 @@ let Game ={
 	level:1,
 	xp: 0,
 	weapon: 'Fist',
-	attack: 10,
+	attack: 15,
 	hItems:[],
 	newWeapon:[],
 	monsters:{},
 	boss:[],
-	bossKey:null,
+	bossKey:{},
 	playerKey:null,
 	
 	init:function(){

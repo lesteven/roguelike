@@ -17,8 +17,8 @@ class GameClass extends Component{
 			const gameDiv = document.getElementById('game');
 			gameDiv.appendChild(Game.getDisplay().getContainer())
 			//console.log(Game.boss,Game.player)
-			console.log(Game.monsters)
-			console.log(Game.map)
+			//console.log(Game.monsters)
+			console.log(Game.boss,Game.bossKey)
 		}
 	}
 	render(){

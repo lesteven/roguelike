@@ -3,7 +3,7 @@ import Game from './game.js';
 
 let boss = function(x,y,key){
 	//delete Game.map[key]
-	Game.bossKey = key;
+	Game.bossKey[key] = 'B';
 	this._x = x;
 	this._y = y;
 	this._draw();
@@ -21,7 +21,7 @@ boss.level = 2;
 
 let monster = function(x,y,key){
 	Game.monsters[key] = 'M';
-	console.log(key)
+	//console.log(key)
 	this._x = x;
 	this._y = y;
 	this._draw();
