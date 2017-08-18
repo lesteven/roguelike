@@ -6,6 +6,7 @@ import {_createPlayer,_engine} from '../assets/player';
 import {_generateMap,_drawWholeMap} from '../assets/map';
 import {} from '../assets/items';
 import {} from '../assets/screens';
+import {} from '../assets/shadow';
 
 class GameClass extends Component{
 	componentDidMount(){
@@ -15,10 +16,8 @@ class GameClass extends Component{
 			console.log('rot supported')
 			Game.init()
 			const gameDiv = document.getElementById('game');
-			gameDiv.appendChild(Game.getDisplay().getContainer())
-			//console.log(Game.boss,Game.player)
-			//console.log(Game.monsters)
-			console.log(Game.monster,Game.monsters)
+			gameDiv.appendChild(Game.getDisplay().getContainer());
+			//Game._surrounding()
 		}
 	}
 	render(){

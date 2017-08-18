@@ -23,10 +23,10 @@ Game._generateMap= function(){
 	this._playerStatus();
 	this.player = this._createBeing(player,freeCells);
 	this.boss = this._createBeing(boss,freeCells);
-
 	for(let i=0; i <5; i++){
 		this._createBeing(monster,freeCells);
 	}
+
 }
 
 Game._drawWholeMap=function(){
@@ -37,6 +37,7 @@ Game._drawWholeMap=function(){
 		this._display.draw(x,y,this.map[key])
 	}
 }
+
 Game.healthPos = 5;
 Game.levelPos = 25;
 Game.xpPos = 45;
@@ -50,3 +51,4 @@ Game._playerStatus = function(){
 	this._display.drawText(this.weaponPos,this.height-3,'Weapon: '+ Game.weapon)
 	this._display.drawText(this.attackPos,this.height-3,'Attack: '+ Game.attack)
 }
+
