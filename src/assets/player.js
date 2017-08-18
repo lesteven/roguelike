@@ -177,6 +177,7 @@ Game._surrounding = function(){
 		let x = parseInt(parts[0]);
 		let y = parseInt(parts[1]);
 		this._display.draw(x,y,'');
+		Game.player._draw()
 	}
 	for(let key in area){
 		if(key in Game.map){
