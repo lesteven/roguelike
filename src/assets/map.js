@@ -19,6 +19,7 @@ Game._generateMap= function(){
 		this.map[key] = ':';
 		freeCells.push(key);
 	}
+	console.log(freeCells,freeCells.length)
 	rogueMap.create(mapCB.bind(this));
 	this._drawWholeMap();
 	this._generateItems(freeCells,5,'#',this.hItems,'#ccffcc');
@@ -29,7 +30,9 @@ Game._generateMap= function(){
 	for(let i=0; i <5; i++){
 		this._createBeing(monster,freeCells);
 	}
-	Game.shadowCast()
+	//Game.shadowCast()
+	this.shadowMap = JSON.parse(JSON.stringify(this.map));
+	this._surrounding()
 }
 
 Game._drawWholeMap=function(){

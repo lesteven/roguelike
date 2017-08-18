@@ -56,9 +56,9 @@ player.prototype.handleEvent = function(e){
     //console.log(newKey)
     this._draw();
     //////////////////////
-    //Game._surrounding();
-    Game.shadowCast()
-    
+    Game._surrounding();
+    //Game.shadowCast()
+
     window.removeEventListener('keydown',this);
     Game.engine.unlock('Game.fov',Game.fov);
     //console.log(Game.playerKey)
@@ -160,26 +160,32 @@ Game._surrounding = function(){
 	area[xp1 + ',' + ym1] = 'topRight';
 
 	area[xm1 +','+ this.player._y] = 'midLeft';
-	area[this.player._x + ',' + this.player._y]= 'mid';
+	//area[this.player._x + ',' + this.player._y]= 'mid';
 	area[xp1 + ',' + this.player._y]= 'midRight;'
 
 	area[xm1 +','+ yp1]= 'botLeft';
 	area[this.player._x + ',' + yp1] ='bottom';
 	area[xp1 + ',' + yp1]='botRight';
 
-	//Game.shadowMap = JSON.parse(JSON.stringify(this.map));
-	//console.log(Object.keys(this.map).length)
+	
 	for(let key in area){
 		//console.log(key)
 		delete Game.shadowMap[key]
-	}
-	//console.log(Object.keys(this.map).length,Object.keys(shadowMap).length)
-	//console.log(area)
+	}	
 	for(let key in Game.shadowMap){
 		let parts = key.split(',');
 		let x = parseInt(parts[0]);
 		let y = parseInt(parts[1]);
-		this._display.draw(x,y,'')
+		this._display.draw(x,y,'');
+	}
+	for(let key in area){
+		if(key in Game.map){
+			//console.log(key)
+			let parts = key.split(',');
+			let x = parseInt(parts[0]);
+			let y = parseInt(parts[1]);
+			this._display.draw(x,y,':')
+		}
 	}
 }
 export {player}
