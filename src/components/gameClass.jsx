@@ -18,6 +18,7 @@ class GameClass extends Component{
 			const gameDiv = document.getElementById('game');
 			gameDiv.appendChild(Game.getDisplay().getContainer());
 			//Game._surrounding()
+			
 		}
 	}
 	render(){

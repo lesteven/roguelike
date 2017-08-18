@@ -21,10 +21,12 @@ let Game ={
 	bossKey:{},
 	playerKey:null,
 	sd: 2,
+	//shadowMap:{},
 	
 	init:function(){
 		this._generateMap()
 		this._engine()
+		//this.shadowMap = JSON.parse(JSON.stringify(this.map));
 	},
 	getDisplay:function(){
 		return this._display;

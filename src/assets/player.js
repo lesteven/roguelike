@@ -1,6 +1,8 @@
 import ROT from '../../vendor/rot.js';  
 import Game from './game.js';
 import {boss,monster} from './monsters.js';
+import {} from './shadow';
+
 
 let player = function(x,y,key){
 	this._x = x;
@@ -55,9 +57,10 @@ player.prototype.handleEvent = function(e){
     this._draw();
     //////////////////////
     //Game._surrounding();
-
+    Game.shadowCast()
+    
     window.removeEventListener('keydown',this);
-    Game.engine.unlock();
+    Game.engine.unlock('Game.fov',Game.fov);
     //console.log(Game.playerKey)
     Game._pickUp(newKey,Game.hItems,Game._increaseHealth);
     Game._pickUp(newKey,Game.newWeapon,Game._getWeapon);
@@ -141,6 +144,8 @@ Game._gainXP = function(){
 	}
 	this._display.drawText(this.xpPos,this.height-3,'XP: '+ Game.xp)
 }
+
+
 Game._surrounding = function(){
 	
 	let xp1 = this.player._x +1;
@@ -162,15 +167,15 @@ Game._surrounding = function(){
 	area[this.player._x + ',' + yp1] ='bottom';
 	area[xp1 + ',' + yp1]='botRight';
 
-	let shadowMap = JSON.parse(JSON.stringify(this.map));
+	//Game.shadowMap = JSON.parse(JSON.stringify(this.map));
 	//console.log(Object.keys(this.map).length)
 	for(let key in area){
 		//console.log(key)
-		delete shadowMap[key]
+		delete Game.shadowMap[key]
 	}
 	//console.log(Object.keys(this.map).length,Object.keys(shadowMap).length)
 	//console.log(area)
-	for(let key in shadowMap){
+	for(let key in Game.shadowMap){
 		let parts = key.split(',');
 		let x = parseInt(parts[0]);
 		let y = parseInt(parts[1]);
