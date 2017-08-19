@@ -2,13 +2,10 @@ import ROT from '../../vendor/rot.js';
 import Game from './game.js';
 import {player} from './player';
 import {boss,monster} from './monsters';
-import {} from './shadow';
+
 
 Game._generateMap= function(){
 	let rogueMap = new ROT.Map.Rogue(this.width,this.height-5)
-		.create(function(x,y,type){
-				Game.data[x+','+y] = type;
-			});
 	this._display = new ROT.Display({width:this.width,height:this.height})
 	//map.create(this._display.DEBUG)
 

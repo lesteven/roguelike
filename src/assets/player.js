@@ -1,7 +1,7 @@
 import ROT from '../../vendor/rot.js';  
 import Game from './game.js';
 import {boss,monster} from './monsters.js';
-import {} from './shadow';
+
 
 
 let player = function(x,y,key){

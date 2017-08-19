@@ -6,7 +6,7 @@ import {_createPlayer,_engine} from '../assets/player';
 import {_generateMap,_drawWholeMap} from '../assets/map';
 import {} from '../assets/items';
 import {} from '../assets/screens';
-import {} from '../assets/shadow';
+
 
 class GameClass extends Component{
 	componentDidMount(){
