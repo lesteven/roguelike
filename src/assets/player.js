@@ -54,7 +54,7 @@ player.prototype.handleEvent = function(e){
     this._x = newX;
     this._y = newY;
     //console.log(newKey)
-    this._draw();
+    //this._draw();
     //////////////////////
     Game._surrounding();
     //Game.shadowCast()
@@ -148,30 +148,15 @@ Game._gainXP = function(){
 
 Game._surrounding = function(){
 	
-	let xp1 = this.player._x +1;
-	let xm1 = this.player._x -1;
+	let coord = shadowCoord(this.player,5)
+	delete coord[this.player._x+','+this.player._y]
+	//console.log(coord)
 
-	let yp1 = this.player._y +1;
-	let ym1 = this.player._y -1;
-
-	let area = {}
-	area[xm1 +','+ym1] = 'topLeft';
-	area[this.player._x + ',' + ym1] = 'top' ;
-	area[xp1 + ',' + ym1] = 'topRight';
-
-	area[xm1 +','+ this.player._y] = 'midLeft';
-	//area[this.player._x + ',' + this.player._y]= 'mid';
-	area[xp1 + ',' + this.player._y]= 'midRight;'
-
-	area[xm1 +','+ yp1]= 'botLeft';
-	area[this.player._x + ',' + yp1] ='bottom';
-	area[xp1 + ',' + yp1]='botRight';
-
-	
-	for(let key in area){
+	for(let key in coord){
 		//console.log(key)
 		delete Game.shadowMap[key]
-	}	
+	}
+	//black out map	
 	for(let key in Game.shadowMap){
 		let parts = key.split(',');
 		let x = parseInt(parts[0]);
@@ -179,7 +164,8 @@ Game._surrounding = function(){
 		this._display.draw(x,y,'');
 		Game.player._draw()
 	}
-	for(let key in area){
+	//draw fov around character
+	for(let key in coord){
 		if(key in Game.map){
 			//console.log(key)
 			let parts = key.split(',');
@@ -188,5 +174,18 @@ Game._surrounding = function(){
 			this._display.draw(x,y,':')
 		}
 	}
+}
+function shadowCoord(player,num){
+	let coord = {};
+	//console.log('player x-y coord',player._x,player._y)
+	for(let i = player._x - num; i <= player._x + num;i++){
+		//console.log('x coord',i)
+		for(let j = player._y - num; j <=player._y + num; j++){
+			//console.log('y coord',j)
+			//console.log(i+','+j)
+			coord[i+','+j] ='S'
+		}
+	}
+	return coord
 }
 export {player}
