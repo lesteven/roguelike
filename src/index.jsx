@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';  
 import GameClass from './components/gameClass.jsx'; 
+require('../public/style.css');
 
 class App extends Component {
 

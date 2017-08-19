@@ -43,7 +43,7 @@ player.prototype.handleEvent = function(e){
     	return;
     }
     if(newKey in Game.monsters){
-    	console.log(newKey)
+    	//console.log(newKey)
     	Game._attack(monster,Game.monsters,newKey)
     	Game._takeDmg(monster)
     	return;
@@ -122,15 +122,15 @@ Game._getWeapon = function(){
 }
 Game._attack = function(villain,obj,key){
 	let dmg = Math.round(ROT.RNG.getNormal(this.attack * this.level,this.sd))
-	console.log('your attack dmg',dmg)
+	//console.log('your attack dmg',dmg)
    	villain.hp -= dmg;
     if(villain.hp <= 0){
     	delete(obj[key]);
     	this._gainXP();
     }
-    console.log(obj)
-    console.log('removed',key)
-    console.log('villain health',villain.hp)
+   //console.log(obj)
+    //console.log('removed',key)
+    //console.log('villain health',villain.hp)
 }
 
 Game._takeDmg = function(villain){	

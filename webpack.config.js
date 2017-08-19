@@ -25,7 +25,8 @@ module.exports = {
     { test: /\.jsx?$/, exclude: /node_modules/, loader: "babel-loader", 
 		
     query:{presets:['react','es2015']}},
-    {test:/rot\.min\.js$/, loader:'exports?ROT'}
+    {test:/rot\.min\.js$/, loader:'exports?ROT'},
+    { test: /\.css$/, loader: "style-loader!css-loader" }
   ]
 }, 
   plugins: [HtmlWebpackPluginConfig]

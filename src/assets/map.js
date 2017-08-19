@@ -16,7 +16,7 @@ Game._generateMap= function(){
 		this.map[key] = ':';
 		freeCells.push(key);
 	}
-	console.log(freeCells,freeCells.length)
+	//console.log(freeCells,freeCells.length)
 	rogueMap.create(mapCB.bind(this));
 	this._drawWholeMap();
 	this._generateItems(freeCells,5,'#',this.hItems,'#ccffcc');
