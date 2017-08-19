@@ -1,5 +1,10 @@
 var path = require('path');
-
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
+  template: './public/index.html',
+  filename: 'index.html',
+  inject: 'body'
+})
 
 module.exports = {
   entry: './src/index.jsx',
@@ -22,5 +27,6 @@ module.exports = {
     query:{presets:['react','es2015']}},
     {test:/rot\.min\.js$/, loader:'exports?ROT'}
   ]
-}
+}, 
+  plugins: [HtmlWebpackPluginConfig]
 };
