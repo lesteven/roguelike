@@ -54,7 +54,7 @@ player.prototype.handleEvent = function(e){
     this._x = newX;
     this._y = newY;
     //console.log(newKey)
-    //this._draw();
+   
     //////////////////////
     Game._surrounding();
     //Game.shadowCast()
@@ -85,6 +85,7 @@ Game._engine = function(){
 }
 
 Game._pickUp = function(coord,arr,cb){
+	/*
 	let index = arr.indexOf(coord)
 	//console.log(index)
 	if(index !== -1){
@@ -94,6 +95,15 @@ Game._pickUp = function(coord,arr,cb){
 	}
 	else{
 		return;
+	}*/
+	for(let key in arr){
+		if(arr[coord]){
+			delete arr[coord]
+			cb()
+		}
+		else{
+			return;
+		}
 	}
 }
 
@@ -174,6 +184,10 @@ Game._surrounding = function(){
 			this._display.draw(x,y,':')
 		}
 	}
+	this._shadowItems(coord,this.monsters,'M','#f4b601')
+	this._shadowItems(coord,this.bossKey,'B','#ff7f7f')
+	this._shadowItems(coord,this.hItems,'#','#ccffcc')
+	this._shadowItems(coord,this.newWeapon,'&','#7bffff')
 }
 function shadowCoord(player,num){
 	let coord = {};
@@ -187,5 +201,23 @@ function shadowCoord(player,num){
 		}
 	}
 	return coord
+}
+Game._shadowItems = function(coord,obj,rep,color){
+	/*
+	console.log(
+		'monsters',this.monsters,
+		'boss',this.bossKey,
+		'health',this.hItems,
+		'weapon',this.newWeapon)*/
+	for(let key in obj){
+		if(key in coord){
+			//console.log('key',key)
+			let parts = key.split(',');
+			let x = parseInt(parts[0]);
+			let y = parseInt(parts[1]);
+			Game._display.draw(x,y,rep,color)
+		}
+
+	}
 }
 export {player}
