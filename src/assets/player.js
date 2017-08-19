@@ -3,7 +3,7 @@ import Game from './game.js';
 import {boss,monster} from './monsters.js';
 
 
-
+//Some code from http://www.roguebasin.com/index.php?title=Rot.js_tutorial
 let player = function(x,y,key){
 	this._x = x;
 	this._y = y;
