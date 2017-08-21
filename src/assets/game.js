@@ -21,7 +21,6 @@ let Game ={
 	bossKey:{},
 	playerKey:null,
 	sd: 2,
-	shadowMap:{},
 	
 	init:function(){
 		this._generateMap()

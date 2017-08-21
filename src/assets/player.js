@@ -161,11 +161,7 @@ Game._surrounding = function(){
 	let coord = shadowCoord(this.player,5)
 	delete coord[this.player._x+','+this.player._y]
 	//console.log(coord)
-	/*
-	for(let key in coord){
-		//console.log(key)
-		delete Game.shadowMap[key]
-	}*/
+
 	//black out map	
 	for(let key in Game.map){
 		let parts = key.split(',');

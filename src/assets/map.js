@@ -28,7 +28,6 @@ Game._generateMap= function(){
 		this._createBeing(monster,freeCells);
 	}
 	//Game.shadowCast()
-	this.shadowMap = JSON.parse(JSON.stringify(this.map));
 	this._surrounding()
 }
 
